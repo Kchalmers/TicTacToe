@@ -1,0 +1,7 @@
+@import "variables";
+
+.square {
+  height: $square-height;
+  width: $square-width;
+  border: $square-border;
+}
