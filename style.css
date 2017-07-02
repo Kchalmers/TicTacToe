@@ -1,0 +1,21 @@
+header {
+  font-size: 3em; }
+
+.square {
+  height: 5em;
+  width: 5em;
+  border: 2px solid black; }
+
+.hidden {
+  display: none; }
+
+.center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute; }
+
+.playArea {
+  height: 80vh; }
+
+/*# sourceMappingURL=style.css.map */
