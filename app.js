@@ -12,6 +12,7 @@ function TicTacToe() {
         $(".y").click(this.setPlayer);
     };
     this.setPlayer = function () {
+        $('.playerSelection').addClass('hidden');
         player1 = this.innerHTML;
         self.current_player = player1;
         if(player1 === 'Y'){
@@ -31,20 +32,24 @@ function TicTacToe() {
     };
     this.createBoard = function () {
         let board = $("<div>", {
-            class : "board"
+            class : "board center"
         });
         $(".playArea").append(board);
     };
     this.createSquares = function () {
         for (let i = 0; i < 3; i++) {
+            let row = $("<div>", {
+                class: "row",
+            });
             for (let j = 0; j < 3; j++) {
                 let square = $("<div>", {
-                    class: "square",
+                    class: "square col-xs-4",
                     "row": i,
                     "col": j
                 });
-                $(".board").append(square);
+                row.append(square);
             }
+            $(".board").append(row);
         }
     };
     this.createPlaysMade = function() {
@@ -137,10 +142,10 @@ function TicTacToe() {
         if(rowCount >= this.winCondition || colCount >= this.winCondition
             || countLeft >= this.winCondition || countRight >= this.winCondition) {
             if (symbolChecking === 1) {
-                $('.playArea').empty().append('<div>Player 1 Wins</div>');
+                $('.playArea').empty().append('<div class="center">Player 1 Wins</div>');
                 setTimeout(this.resetGame, 3000);
             } else {
-                $('.playArea').empty().append('<div>Player 2 Wins</div>');
+                $('.playArea').empty().append('<div class="center">Player 2 Wins</div>');
                 setTimeout(this.resetGame, 3000);
             }
         }
@@ -162,6 +167,7 @@ function TicTacToe() {
                 this.checkWin(row, col, 1);
                 this.current_player = player2;
                 $(self).addClass('occupied');
+                this.computer();
             } else {
                 this.playsMadeArr[row][col] = 2;
                 $(self).append(player2);
@@ -171,10 +177,22 @@ function TicTacToe() {
             }
         }
     };
+    this.computer = function () {
+        let selector = Math.floor(Math.random() * 8);
+        let selected = null;
+        if($('.square')[selector]) {
+            while ($('.square')[selector].className === "square col-xs-4 occupied") {
+                selector = Math.floor(Math.random() * 9) + 1;
+            }
+            selected = $('.square')[selector];
+            selected.click(this.switchPlayers.bind(this));
+        }
+    };
     this.resetGame = function () {
         this.current_player = player1;
         this.playsMadeArr = [];
         $('.playArea').empty();
+        $('.playerSelection').removeClass('hidden');
         tieCounter = 0;
         this.gameStarted = false;
     };

@@ -1,7 +1,26 @@
 @import "variables";
 
+header {
+  font-size: $header-size;
+}
+
 .square {
   height: $square-height;
   width: $square-width;
   border: $square-border;
+}
+
+.hidden {
+  display: none;
+}
+
+.center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.playArea {
+  height: 80vh;
 }
