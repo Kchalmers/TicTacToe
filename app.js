@@ -150,7 +150,7 @@ function TicTacToe() {
             }
         }
         else if (tieCounter === 9){
-            $('.playArea').empty().append('<div>Tie</div>');
+            $('.playArea').empty().append('<div class="center">Tie</div>');
             setTimeout(this.resetGame, 3000);
         }
     };
